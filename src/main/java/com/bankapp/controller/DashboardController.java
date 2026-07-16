@@ -57,6 +57,7 @@ public class DashboardController {
         if (user == null) { navigateTo("/fxml/login.fxml"); return; }
 
         usernameLabel.setText(user.getUsername());
+        navDashboard.getStyleClass().add("active");
         showDashboardPane();
     }
 

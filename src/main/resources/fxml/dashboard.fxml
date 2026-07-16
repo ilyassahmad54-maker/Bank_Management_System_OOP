@@ -12,7 +12,7 @@
             <Label text="🏦 NeoBank" styleClass="sidebar-logo"/>
             <Separator style="-fx-background-color: rgba(255,255,255,0.15);"/>
 
-            <Button fx:id="navDashboard"    text="📊  Dashboard"     styleClass="sidebar-nav-btn, active" onAction="#showDashboard"/>
+            <Button fx:id="navDashboard"    text="📊  Dashboard"     styleClass="sidebar-nav-btn" onAction="#showDashboard"/>
             <Button fx:id="navTransactions" text="📋  Transactions"   styleClass="sidebar-nav-btn"         onAction="#showTransactions"/>
             <Button fx:id="navDeposit"      text="💵  Deposit"        styleClass="sidebar-nav-btn"         onAction="#showDeposit"/>
             <Button fx:id="navWithdraw"     text="💸  Withdraw"       styleClass="sidebar-nav-btn"         onAction="#showWithdraw"/>

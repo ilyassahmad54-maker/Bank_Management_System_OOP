@@ -101,9 +101,10 @@ public class LoginController {
             scene.getStylesheets().add(getClass().getResource("/css/light.css").toExternalForm());
             stage.setScene(scene);
             stage.centerOnScreen();
-        } catch (IOException e) {
-            log.error("Navigation failed: {}", fxmlPath, e);
-            showError(errorLabel, "Navigation error. Please restart the application.");
+        } catch (Exception e) {
+            Throwable cause = e.getCause() != null ? e.getCause() : e;
+            log.error("Navigation failed: {} — {}", fxmlPath, cause.getMessage(), cause);
+            showError(errorLabel, "Navigation error: " + cause.getMessage());
         }
     }
 
