@@ -1,6 +1,32 @@
-bin/
-.DS_Store
-.settings/
-*.class
-.maven/
+# Build output
 target/
+bin/
+*.class
+
+# Bundled Maven (too large for GitHub — install Maven locally or use mvnw)
+tools/
+
+# IDE files
+.classpath
+.project
+.settings/
+*.iml
+.idea/
+*.eclipse
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Maven
+.maven/
+.mvn/
+
+# Logs
+*.log
+logs/
+
+# Database (user data — never commit)
+*.db
+*.db-shm
+*.db-wal

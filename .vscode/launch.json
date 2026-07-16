@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "com.bankapp.Main",
+            "projectName": "Bank_Management_System_OOP"
+        },
+        {
+            "type": "java",
+            "name": "Run NeoBank",
+            "request": "launch",
+            "mainClass": "com.bankapp.Launcher",
+            "projectName": "Bank_Management_System_OOP"
+        }
+    ]
+}

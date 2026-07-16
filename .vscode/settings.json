@@ -1,0 +1,12 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.jdt.ls.java.home": "/Library/Java/JavaVirtualMachines/liberica-jdk-21.jdk/Contents/Home",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-21",
+            "path": "/Library/Java/JavaVirtualMachines/liberica-jdk-21.jdk/Contents/Home",
+            "default": true
+        }
+    ],
+    "maven.executable.path": "${workspaceFolder}/tools/apache-maven-3.9.9/bin/mvn"
+}

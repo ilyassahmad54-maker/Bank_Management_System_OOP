@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.bankapp.controller.DashboardController">
+
+    <!-- ═══════════ LEFT SIDEBAR ═══════════ -->
+    <left>
+        <VBox styleClass="sidebar" spacing="0">
+            <Label text="🏦 NeoBank" styleClass="sidebar-logo"/>
+            <Separator style="-fx-background-color: rgba(255,255,255,0.15);"/>
+
+            <Button fx:id="navDashboard"    text="📊  Dashboard"     styleClass="sidebar-nav-btn, active" onAction="#showDashboard"/>
+            <Button fx:id="navTransactions" text="📋  Transactions"   styleClass="sidebar-nav-btn"         onAction="#showTransactions"/>
+            <Button fx:id="navDeposit"      text="💵  Deposit"        styleClass="sidebar-nav-btn"         onAction="#showDeposit"/>
+            <Button fx:id="navWithdraw"     text="💸  Withdraw"       styleClass="sidebar-nav-btn"         onAction="#showWithdraw"/>
+            <Button fx:id="navTransfer"     text="🔄  Transfer"       styleClass="sidebar-nav-btn"         onAction="#showTransfer"/>
+            <Button fx:id="navBills"        text="🧾  Utility Bills"  styleClass="sidebar-nav-btn"         onAction="#showBills"/>
+            <Button fx:id="navLoans"        text="🏠  Loans"          styleClass="sidebar-nav-btn"         onAction="#showLoans"/>
+            <Button fx:id="navSettings"     text="⚙️  Settings"       styleClass="sidebar-nav-btn"         onAction="#showSettings"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+            <Separator style="-fx-background-color: rgba(255,255,255,0.15);"/>
+            <Button text="🚪  Logout" styleClass="sidebar-nav-btn" onAction="#handleLogout"
+                    style="-fx-text-fill: #ef9a9a;"/>
+        </VBox>
+    </left>
+
+    <!-- ═══════════ MAIN AREA ═══════════ -->
+    <center>
+        <VBox>
+            <!-- Top Header Bar -->
+            <HBox styleClass="app-header" alignment="CENTER_LEFT" spacing="16">
+                <Label fx:id="pageTitle" text="Dashboard" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="🌙" style="-fx-cursor:hand; -fx-font-size:18px;"
+                       onMouseClicked="#toggleTheme" fx:id="themeToggle"/>
+                <HBox alignment="CENTER" spacing="8">
+                    <Label text="👤" style="-fx-font-size:20px;"/>
+                    <Label fx:id="usernameLabel" text="User" styleClass="section-title"/>
+                </HBox>
+            </HBox>
+
+            <!-- Scrollable Content Area — all panels render here -->
+            <ScrollPane fx:id="contentScroll" fitToWidth="true" VBox.vgrow="ALWAYS"
+                        style="-fx-background-color:transparent; -fx-background:transparent;">
+                <!-- contentArea is the StackPane the controller swaps panels into -->
+                <StackPane fx:id="contentArea" style="-fx-padding: 24;">
+
+                    <!-- Default view: Dashboard home -->
+                    <VBox fx:id="dashboardPane" spacing="20">
+
+                        <!-- Balance + Stats Row -->
+                        <HBox spacing="16">
+                            <VBox styleClass="balance-card" spacing="8" HBox.hgrow="ALWAYS">
+                                <Label text="Available Balance" styleClass="balance-label"/>
+                                <Label fx:id="balanceLabel" text="$0.00" styleClass="balance-amount"/>
+                                <Label fx:id="accountNumberLabel" text="****0000" styleClass="account-number-label"/>
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <Label fx:id="accountTypeLabel" text="Savings"
+                                           style="-fx-background-color:rgba(255,255,255,0.2); -fx-background-radius:4; -fx-padding:2 8 2 8; -fx-text-fill:white; -fx-font-size:11px;"/>
+                                </HBox>
+                            </VBox>
+
+                            <VBox styleClass="card" spacing="12" HBox.hgrow="ALWAYS">
+                                <Label text="This Month" styleClass="section-title"/>
+                                <HBox spacing="24">
+                                    <VBox spacing="4">
+                                        <Label text="Deposited" styleClass="label-muted"/>
+                                        <Label fx:id="monthDepositLabel" text="$0.00"
+                                               style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#2e7d32;"/>
+                                    </VBox>
+                                    <VBox spacing="4">
+                                        <Label text="Withdrawn" styleClass="label-muted"/>
+                                        <Label fx:id="monthWithdrawLabel" text="$0.00"
+                                               style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#c62828;"/>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+
+                        <!-- Quick Actions -->
+                        <VBox styleClass="card" spacing="16">
+                            <Label text="Quick Actions" styleClass="section-title"/>
+                            <HBox spacing="24" alignment="CENTER_LEFT">
+                                <VBox spacing="8" alignment="CENTER">
+                                    <Button styleClass="quick-action-btn" text="💵" onAction="#showDeposit"/>
+                                    <Label text="Deposit" styleClass="label-muted"/>
+                                </VBox>
+                                <VBox spacing="8" alignment="CENTER">
+                                    <Button styleClass="quick-action-btn" text="💸" onAction="#showWithdraw"/>
+                                    <Label text="Withdraw" styleClass="label-muted"/>
+                                </VBox>
+                                <VBox spacing="8" alignment="CENTER">
+                                    <Button styleClass="quick-action-btn" text="🔄" onAction="#showTransfer"/>
+                                    <Label text="Transfer" styleClass="label-muted"/>
+                                </VBox>
+                                <VBox spacing="8" alignment="CENTER">
+                                    <Button styleClass="quick-action-btn" text="🧾" onAction="#showBills"/>
+                                    <Label text="Pay Bill" styleClass="label-muted"/>
+                                </VBox>
+                                <VBox spacing="8" alignment="CENTER">
+                                    <Button styleClass="quick-action-btn" text="🏠" onAction="#showLoans"/>
+                                    <Label text="Apply Loan" styleClass="label-muted"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Recent Transactions -->
+                        <VBox styleClass="card" spacing="16">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label text="Recent Transactions" styleClass="section-title" HBox.hgrow="ALWAYS"/>
+                                <Label text="View all →" styleClass="link-label" onMouseClicked="#showTransactions"/>
+                            </HBox>
+                            <VBox fx:id="recentTxnList" spacing="0"/>
+                            <Label fx:id="noTxnLabel" text="No transactions yet. Make your first deposit!"
+                                   styleClass="label-muted" alignment="CENTER" maxWidth="Infinity"
+                                   managed="false" visible="false"/>
+                        </VBox>
+
+                    </VBox>
+                </StackPane>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.bankapp.controller.RegisterController"
+           styleClass="auth-root">
+
+    <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER"
+                style="-fx-background-color:transparent; -fx-background:transparent;">
+        <VBox alignment="CENTER" spacing="0" style="-fx-padding:40 0 40 0;">
+            <HBox alignment="CENTER">
+                <VBox styleClass="auth-card" spacing="20" maxWidth="460">
+
+                    <!-- Title -->
+                    <VBox spacing="4">
+                        <Label text="🏦 NeoBank" styleClass="auth-title"/>
+                        <Label text="Create your account" styleClass="auth-subtitle"/>
+                    </VBox>
+
+                    <!-- Step Indicator -->
+                    <HBox alignment="CENTER" spacing="8">
+                        <Label fx:id="step1Circle" text="1" styleClass="wizard-step-circle active"
+                               style="-fx-alignment:center; -fx-text-fill:white; -fx-font-weight:bold;"/>
+                        <Separator prefWidth="40" style="-fx-background-color: derive(-fx-border, 0%);"/>
+                        <Label fx:id="step2Circle" text="2" styleClass="wizard-step-circle"
+                               style="-fx-alignment:center; -fx-text-fill:grey; -fx-font-weight:bold;"/>
+                        <Separator prefWidth="40"/>
+                        <Label fx:id="step3Circle" text="3" styleClass="wizard-step-circle"
+                               style="-fx-alignment:center; -fx-text-fill:grey; -fx-font-weight:bold;"/>
+                    </HBox>
+                    <HBox spacing="0" alignment="CENTER">
+                        <Label fx:id="stepLabel" text="Step 1: Personal Information" styleClass="label-muted"
+                               style="-fx-font-size:12px;"/>
+                    </HBox>
+
+                    <!-- Error Banner -->
+                    <Label fx:id="errorLabel" text="" styleClass="label-danger" wrapText="true"
+                           managed="false" visible="false"/>
+
+                    <!-- === STEP 1: Personal Info === -->
+                    <VBox fx:id="step1Pane" spacing="14">
+                        <VBox spacing="6">
+                            <Label text="Full Address" styleClass="label-muted"/>
+                            <TextField fx:id="addressField" promptText="e.g. 123 Main St, Lahore"/>
+                            <Label fx:id="addressError" text="" styleClass="label-danger" managed="false" visible="false"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="CNIC" styleClass="label-muted"/>
+                            <TextField fx:id="cnicField" promptText="00000-0000000-0"/>
+                            <Label fx:id="cnicError" text="" styleClass="label-danger" managed="false" visible="false"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="Phone Number" styleClass="label-muted"/>
+                            <TextField fx:id="phoneField" promptText="+92 300 0000000"/>
+                            <Label fx:id="phoneError" text="" styleClass="label-danger" managed="false" visible="false"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="Age" styleClass="label-muted"/>
+                            <TextField fx:id="ageField" promptText="18-100"/>
+                            <Label fx:id="ageError" text="" styleClass="label-danger" managed="false" visible="false"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- === STEP 2: Account Setup === -->
+                    <VBox fx:id="step2Pane" spacing="14" managed="false" visible="false">
+                        <VBox spacing="6">
+                            <Label text="Username" styleClass="label-muted"/>
+                            <TextField fx:id="usernameField" promptText="Letters, numbers, underscore"/>
+                            <Label fx:id="usernameError" text="" styleClass="label-danger" managed="false" visible="false"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="Password" styleClass="label-muted"/>
+                            <PasswordField fx:id="passwordField" promptText="Min 8 chars, 1 uppercase, 1 number"/>
+                            <ProgressBar fx:id="strengthBar" progress="0" maxWidth="Infinity"
+                                         styleClass="strength-weak"/>
+                            <Label fx:id="strengthLabel" text="Strength: —" styleClass="label-muted"/>
+                            <Label fx:id="passwordError" text="" styleClass="label-danger" managed="false" visible="false"/>
+                        </VBox>
+                        <VBox spacing="6">
+                            <Label text="Confirm Password" styleClass="label-muted"/>
+                            <PasswordField fx:id="confirmPasswordField" promptText="Repeat your password"/>
+                            <Label fx:id="confirmError" text="" styleClass="label-danger" managed="false" visible="false"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- === STEP 3: Account Type === -->
+                    <VBox fx:id="step3Pane" spacing="14" managed="false" visible="false">
+                        <Label text="Choose Account Type" styleClass="section-title"/>
+                        <HBox spacing="12">
+                            <VBox fx:id="savingsCard" styleClass="loan-type-card" spacing="8" onMouseClicked="#selectSavings">
+                                <Label text="💰" style="-fx-font-size:28px;"/>
+                                <Label text="Savings" styleClass="section-title"/>
+                                <Label text="3.5% p.a. interest" styleClass="label-muted"/>
+                                <Label text="Best for saving money" styleClass="label-muted"/>
+                            </VBox>
+                            <VBox fx:id="currentCard" styleClass="loan-type-card" spacing="8" onMouseClicked="#selectCurrent">
+                                <Label text="💳" style="-fx-font-size:28px;"/>
+                                <Label text="Current" styleClass="section-title"/>
+                                <Label text="No interest" styleClass="label-muted"/>
+                                <Label text="Best for daily transactions" styleClass="label-muted"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Navigation Buttons -->
+                    <HBox spacing="12">
+                        <Button fx:id="backBtn" text="Back" onAction="#handleBack"
+                                styleClass="btn-outline" managed="false" visible="false" HBox.hgrow="ALWAYS"
+                                maxWidth="Infinity"/>
+                        <Button fx:id="nextBtn" text="Continue →" onAction="#handleNext"
+                                styleClass="btn-primary" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    </HBox>
+
+                    <Separator/>
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label text="Already have an account?" styleClass="label-muted"/>
+                        <Label text="Sign in" styleClass="link-label" onMouseClicked="#goToLogin"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </ScrollPane>
+</StackPane>
