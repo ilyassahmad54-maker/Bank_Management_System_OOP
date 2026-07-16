@@ -18,81 +18,30 @@
 
     <dependencies>
 
-        <!-- ── JavaFX — all platforms (Windows, macOS, Linux) ── -->
+        <!-- ── JavaFX — platform natives resolved via profiles below ── -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>${javafx.version}</version>
-            <classifier>win</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>mac</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>linux</classifier>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>win</classifier>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
-            <classifier>mac</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>linux</classifier>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>win</classifier>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
             <version>${javafx.version}</version>
-            <classifier>mac</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>linux</classifier>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>win</classifier>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>${javafx.version}</version>
-            <classifier>mac</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>${javafx.version}</version>
-            <classifier>linux</classifier>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
 
         <!-- ── SQLite + Connection Pool ── -->
@@ -169,7 +118,10 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.bankapp.Main</mainClass>
+                    <mainClass>com.bankapp.Launcher</mainClass>
+                    <options>
+                        <option>-Djava.library.path=${project.build.directory}</option>
+                    </options>
                 </configuration>
             </plugin>
 
@@ -208,4 +160,22 @@
 
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>win</id>
+            <activation><os><family>windows</family></os></activation>
+            <properties><javafx.platform>win</javafx.platform></properties>
+        </profile>
+        <profile>
+            <id>mac</id>
+            <activation><os><family>mac</family></os></activation>
+            <properties><javafx.platform>mac</javafx.platform></properties>
+        </profile>
+        <profile>
+            <id>linux</id>
+            <activation><os><family>unix</family></os></activation>
+            <properties><javafx.platform>linux</javafx.platform></properties>
+        </profile>
+    </profiles>
+
 </project>
