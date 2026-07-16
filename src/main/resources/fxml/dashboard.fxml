@@ -56,7 +56,7 @@
                         <HBox spacing="16">
                             <VBox styleClass="balance-card" spacing="8" HBox.hgrow="ALWAYS">
                                 <Label text="Available Balance" styleClass="balance-label"/>
-                                <Label fx:id="balanceLabel" text="$0.00" styleClass="balance-amount"/>
+                                <Label fx:id="balanceLabel" text="0.00" styleClass="balance-amount"/>
                                 <Label fx:id="accountNumberLabel" text="****0000" styleClass="account-number-label"/>
                                 <HBox spacing="8" alignment="CENTER_LEFT">
                                     <Label fx:id="accountTypeLabel" text="Savings"
@@ -69,12 +69,12 @@
                                 <HBox spacing="24">
                                     <VBox spacing="4">
                                         <Label text="Deposited" styleClass="label-muted"/>
-                                        <Label fx:id="monthDepositLabel" text="$0.00"
+                                        <Label fx:id="monthDepositLabel" text="0.00"
                                                style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#2e7d32;"/>
                                     </VBox>
                                     <VBox spacing="4">
                                         <Label text="Withdrawn" styleClass="label-muted"/>
-                                        <Label fx:id="monthWithdrawLabel" text="$0.00"
+                                        <Label fx:id="monthWithdrawLabel" text="0.00"
                                                style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#c62828;"/>
                                     </VBox>
                                 </HBox>
