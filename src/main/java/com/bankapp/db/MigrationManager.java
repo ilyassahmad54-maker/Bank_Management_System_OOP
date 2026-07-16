@@ -34,6 +34,16 @@ public class MigrationManager {
                 }
                 logger.info("Successfully migrated DB Schema to Version 1.");
             }
+
+            if (currentVersion < 2) {
+                logger.info("Running Migration V2 (Seed Data)...");
+                String v2Sql = readResourceFile("/migrations/V2__seed_data.sql");
+                executeSqlInTransaction(conn, v2Sql);
+                try (Statement stmt = conn.createStatement()) {
+                    stmt.execute("PRAGMA user_version = 2;");
+                }
+                logger.info("Successfully migrated DB Schema to Version 2.");
+            }
         } catch (Exception e) {
             logger.error("Migration failed!", e);
             throw new RuntimeException("Database migration failed", e);
